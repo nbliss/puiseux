@@ -72,10 +72,12 @@ def expand(poly,initialTerm,n=4,showPlot=False):
 		# plugging (y+terms) into poly
 		nextPoly = poly.evaluate(mypoly({0:solutions[initialTerm][2],1:1}))
 		hull = lowerHull(nextPoly.support())
-		print '--------hull--------'
-		print hull
+		print '--------begin hull--------'
+		print "First term: ",initialTerm
+		print "p(first term): ",poly.evaluate(initialTerm)
+		print "lower hull: ",hull
 		for i in xrange(len(hull)-1):print slp(hull[i],hull[i+1])
-		print '--------hull--------'
+		print '--------end hull--------'
 		if showPlot: ploty(nextPoly.support())
 		newCoeff = -poly.internal[hull[0][0]].LC()/poly.internal[hull[1][0]].LC()
 		newExp = solutions[initialTerm][1]-slp(hull[0],hull[1])
