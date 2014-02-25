@@ -92,5 +92,9 @@ if __name__=='__main__':
 	p = mypoly({0:puiseux({Fraction(5):1}), 1:puiseux({Fraction(7,2):1}), 2:puiseux({Fraction(1):1}), 3:puiseux({Fraction(-1):1}), 5:puiseux({Fraction(-1,2):1}), 6:puiseux([[1,[1,2]]]), 7:puiseux([[1,[10,3]]]), 8:puiseux([[1,[5,2]]])})
 	it = initialTerms(p)
 	print it
+	for term in it:
+		print 'start-----------------'
+		print p.evaluate(term)
+		print 'end-----------------'
 	print solutions
 	print expand(p,it[-3],2)
