@@ -1,3 +1,4 @@
+TOLERANCE=1e-8
 class puiseux(object):
 	def __init__(self,poly,checkReduced=True):
 		from fractions import Fraction
@@ -25,25 +26,30 @@ class puiseux(object):
 		else:
 			self.internal = {Fraction(elt[1][0],elt[1][1]):elt[0] for elt in poly}
 		for key in self.internal.keys():
-			if self.internal[key]==0:
+			if nearZero(self.internal[key]):
 				self.internal.pop(key)
-
+		if self.internal=={}:
+			self.internal = {Fraction(0,1):0}
 
 	def __eq__(self,other):
 		if type(other)==puiseux:
-			if self.internal.keys() != other.internal.keys(): return False
+			if self.internal.keys() != other.internal.keys():
+				return False
 			equal = True
-			for key in set(self.internal.keys()+other.internal.keys()):
-				if self.internal[key]!=other.internal[key]:
+			for key in self.internal.keys():
+				if not nearZero(self.internal[key]-other.internal[key]):
 					equal = False
 					break
 			return equal
 		else:
 			l = self.internal.keys()
 			if len(l)==1 and l[0]==0:
-				return self.internal[l]==other
+				return self.internal[l[0]]==other
 			elif len(l)==0: return other==0
 			return False
+
+	def __ne__(self,other):
+		return not self.__eq__(other)
 
 	def __add__(self,other):
 		from fractions import Fraction
@@ -136,12 +142,18 @@ class puiseux(object):
 	def __str__(self):
 		return self.__repr__()
 
+	def __hash__(self):
+		return hash(sum(self.internal.keys()))
+
 	def LT(self):
 		"""
 		Returns the leading term
 		"""
 		lt = min(self.internal.keys())
 		return puiseux({lt:self.internal[lt]})
+
+	def monicLT(self):
+		return puiseux({min(self.internal.keys()):1})
 
 	def LC(self):
 		"""
@@ -161,21 +173,16 @@ class puiseux(object):
 			return prod/b
 		return reduce(lcm,L)
 
+def nearZero(a):
+	from fractions import Fraction
+	if type(a) in [int, long]: return a==0
+	if type(a) in [float,complex]:
+		return abs(a)<TOLERANCE
+	if type(a)==Fraction: return a==0
+
 if __name__=='__main__':
 	a = puiseux([[2,(2,6)],[-3,(1,10)]])
 	b = puiseux([[4,(4,7)],[-5,(1,2)]])
-	print a,"   <-a"
-	print b,"   <-b"
-	print "heyo"
-	print a-b,"  <- a-b"
-	print -a,"  <- -a"
-	print a+b,"   <- a+b"
-	print a**2
-	print b
-	print
-	print a.LT()
-	print b.LT()
-	print a*b
-	print (a*b).LT()
-	a*=3
-	print a
+	c = puiseux([[4,(4,7)],[-5,(1,2)],[0,(3,4)]])
+	print c
+	print c.LC()

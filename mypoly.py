@@ -29,12 +29,16 @@ class mypoly(object):
 				else: self.internal[exponent] = coeff
 		else:
 			self.internal = {elt[1]:elt[0] for elt in poly}
+		for key in self.internal.keys():
+			if self.internal[key]==0:
+				self.internal.pop(key)
+		if self.internal=={}:self.internal = {0:0}
 
         def __eq__(self,other):
                 if type(other)==mypoly:
                         if self.internal.keys() != other.internal.keys(): return False
                         equal = True
-                        for key in set(self.internal.keys()+other.internal.keys()):
+                        for key in self.internal.keys():
                                 if self.internal[key]!=other.internal[key]:
                                         equal = False
                                         break
@@ -110,10 +114,10 @@ class mypoly(object):
                 from fractions import Fraction
                 if type(other)==int and other>=0:
                         if other==0:
-                                return mypoly({1:puiseux({Fraction(0,1):1})})
+                                return mypoly({0:puiseux({Fraction(0,1):1})})
                         else:
-                                toReturn = mypoly({1:puiseux({Fraction(0,1):1})})
-                                for i in xrange(other-1):
+                                toReturn = mypoly({0:puiseux({Fraction(0,1):1})})
+                                for i in xrange(other):
                                         toReturn = self*toReturn
                                 return toReturn
                 elif type(other)==int:
@@ -145,6 +149,7 @@ class mypoly(object):
 	def __str__(self):
 		return self.__repr__()
 
+	def __call__(self,value):return self.evaluate(value)
 	def evaluate(self,value):
 		# Use horner's scheme to speed this up?
 		toReturn = 0
@@ -166,20 +171,9 @@ class mypoly(object):
 if __name__=='__main__':
 	from puiseuxPoly import puiseux
 	from fractions import Fraction
-	p = mypoly({0:puiseux({Fraction(5):1}), 1:puiseux({Fraction(7,2):1}), 2:puiseux({Fraction(1):1}), 3:puiseux({Fraction(-1):1}), 5:puiseux({Fraction(-1,2):1}), 6:puiseux([[1,[1,2]]]), 7:puiseux([[1,[10,3]]]), 8:puiseux([[1,[5,2]]])})
-	print p
-	print
-	a1 = puiseux({Fraction(-1,4):complex(0,1)})
-	p1 = p.evaluate(mypoly({0:a1,1:1}))
-	print p1
-	print
-	print p.support()
-	from convexHull import lowerHull,ploty
-	print lowerHull(p1.support())
-	#ploty(p1.support())
-
-	a2 = puiseux({Fraction(1,2)+Fraction(-1,4):-1})
-	p2 = p1.evaluate(mypoly({0:a2,1:1}))
-	print lowerHull(p2.support())
-	ploty(p2.support())
-
+	poly = mypoly({0:puiseux({2:1,3:-1}),1:puiseux({1:-2}),2:puiseux({0:1})})
+	print 'poly: ',poly
+	yplus = mypoly({0:puiseux({1:1}),1:1})
+	nextPoly = poly.evaluate(yplus)
+	print nextPoly
+	print nextPoly.support()
