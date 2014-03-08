@@ -104,7 +104,7 @@ def expand(poly,initialTerm,n=4,showPlot=False):
 			return solutions[initialTerm][2]
 		if slopes[1]<0: print "Error!!! Multiple negative slope segments!!"
 		newCoeff = -nextPoly.internal[hull[0][0]].LC()/nextPoly.internal[hull[1][0]].LC()
-		newExp = solutions[initialTerm][1]-slp(hull[0],hull[1])
+		newExp = solutions[initialTerm][1]-slopes[0]
 		solutions[initialTerm][0]+=1
 		solutions[initialTerm][1] = newExp
 		solutions[initialTerm][2]+=puiseux({newExp:newCoeff})
@@ -120,28 +120,28 @@ if __name__=='__main__':
 		p = mypoly({0:puiseux({Fraction(5):1}), 1:puiseux({Fraction(7,2):1}), 2:puiseux({Fraction(1):1}), 3:puiseux({Fraction(-1):1}), 5:puiseux({Fraction(-1,2):1}), 6:puiseux([[1,[1,2]]]), 7:puiseux([[1,[10,3]]]), 8:puiseux([[1,[5,2]]])})
 		it = initialTerms(p)
 		print it
-		first = puiseux({Fraction(2):(0.232785615938+0.792551992515j)})
-		#first = puiseux({Fraction(-1,4):1j})
+		#first = puiseux({Fraction(2):(0.232785615938+0.792551992515j)})
+		first = puiseux({Fraction(-1,4):1j})
 		print p(first)
 		nextPoly = p(mypoly({0:first,1:1}))
 		print lowerHull(nextPoly.support())
 		print
-		print expand(p,first,10)
+		print expand(p,first,10,showPlot=False)
 	elif n==1:
 		p = mypoly({0:puiseux({4:2}),1:puiseux({2:1}),2:puiseux({1:4}),3:puiseux({0:4})})
 		print p
 		it = initialTerms(p)
 		print it
 		first = puiseux({2:-2})
-		print expand(p,first,4,showPlot=False)
+		#first = puiseux({1:Fraction(-1,2)})
+		terms = expand(p,first,4,showPlot=False)
+		print terms
+		print p(first)
 	elif n==2:
 		p = mypoly({1:puiseux({3:2,5:1}),2:puiseux({2:-2,4:4}),3:puiseux({3:-5})})
 		print p
 		it = initialTerms(p)
 		print it
 		term = puiseux({-1:(-0.4+0j)})
-		print expand(p,term,3,showPlot=False)
-
-
-
-
+		term = puiseux({1:1})
+		print expand(p,term,4,showPlot=False)

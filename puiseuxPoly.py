@@ -109,7 +109,7 @@ class puiseux(object):
 				return puiseux({Fraction(0,1):1})
 			else:
 				toReturn = puiseux({Fraction(0,1):1})
-				for i in xrange(other-1):
+				for i in xrange(other):
 					toReturn *= self
 				return toReturn
 		elif type(other)==int:

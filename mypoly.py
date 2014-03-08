@@ -172,8 +172,8 @@ if __name__=='__main__':
 	from puiseuxPoly import puiseux
 	from fractions import Fraction
 	poly = mypoly({0:puiseux({2:1,3:-1}),1:puiseux({1:-2}),2:puiseux({0:1})})
+	poly = mypoly({0:puiseux({4:2}),1:puiseux({2:1}),2:puiseux({1:4}),3:puiseux({0:4})})
 	print 'poly: ',poly
-	yplus = mypoly({0:puiseux({1:1}),1:1})
-	nextPoly = poly.evaluate(yplus)
-	print nextPoly
-	print nextPoly.support()
+	first = puiseux({2:-2})
+	print first
+	print poly(first)
