@@ -86,7 +86,7 @@ class puiseux(object):
 
     def __mul__(self, other):
         if type(other) in [int,float,Fraction,long,complex]:
-            return puiseux({term:other*self.internal[term] for term in self.internal})
+            return puiseux({term:other*self.internal[term] for term in self.internal.keys()})
         elif type(other)==puiseux:
             toReturn = {}
             for key1 in other.internal.keys():
@@ -113,7 +113,7 @@ class puiseux(object):
         else: raise TypeError("can't do that")
 
     def __neg__(self):
-        return puiseux({term:0-self.internal[term] for term in self.internal})
+        return puiseux({term:0-self.internal[term] for term in self.internal.keys()})
 
     def __rmul__(self,other):return self*other
     def __radd__(self,other):return self+other

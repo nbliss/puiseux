@@ -86,7 +86,7 @@ class mypoly(object):
 
     def __mul__(self, other):
         if type(other) in [puiseux,int,float,Fraction,long,complex]:
-            return mypoly({term:self.internal[term]*other for term in self.internal})
+            return mypoly({term:self.internal[term]*other for term in self.internal.keys()})
         elif type(other)==mypoly:
             toReturn = {}
             for key1 in other.internal.keys():
@@ -118,7 +118,7 @@ class mypoly(object):
         else: raise TypeError("can't do that")
 
     def __neg__(self):
-        return mypoly({term:(-self.internal[term]) for term in self.internal})
+        return mypoly({term:(-self.internal[term]) for term in self.internal.keys()})
 
     def __repr__(self):
         listy = sorted(self.internal.keys())

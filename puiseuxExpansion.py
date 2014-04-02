@@ -22,19 +22,19 @@ def initialTerms(poly,positivesOnly=False):
             oldSlope = slopes[i]
             slope_vertices[oldSlope].append(hull[i][0])
     slope_roots = {}
-    for slope in slope_vertices:
+    for slope in slope_vertices.keys():
         if positivesOnly and slope>=0: continue
         deg = max(slope_vertices[slope])
         slope_roots[slope] = [0 for i in xrange(deg+1)]
         for i in slope_vertices[slope]:
             slope_roots[slope][i] = poly.internal[i].LC()
         slope_roots[slope].reverse()
-    for key in slope_roots:
+    for key in slope_roots.keys():
         while slope_roots[key][-1]==0: #don't care about coeffs that are 0
             slope_roots[key].pop()
         slope_roots[key]=[complex(x) for x in np.roots(slope_roots[key])]
     toReturn = []
-    for slope in slope_roots:
+    for slope in slope_roots.keys():
         for coeff in slope_roots[slope]:
             toReturn.append((-slope,coeff))
     #########################
