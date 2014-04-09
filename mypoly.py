@@ -29,7 +29,9 @@ class mypoly(object):
                     self.internal[exponent] += coeff
                 else: self.internal[exponent] = coeff
         else:
-            self.internal = {elt[1]:elt[0] for elt in poly}
+            self.internal = {}
+            for elt in poly:
+                self.internal[elt[1]]=elt[0]
         for key in self.internal.keys():
             if self.internal[key]==0:
                 self.internal.pop(key)
@@ -53,7 +55,10 @@ class mypoly(object):
 
     def __add__(self,other):
         if type(other) in [puiseux,int,float,Fraction,long,complex]:
-            return mypoly({key : self.internal[key]+other for key in self.internal.keys()})
+            mp = {}
+            for key in self.internal.keys():
+                mp[key] = self.internal[key]+other
+            return mypoly(mp)
         elif type(other)==mypoly:
             toReturn = {}
             for key in self.internal.keys():
@@ -69,7 +74,10 @@ class mypoly(object):
 
     def __sub__(self, other):
         if type(other) in [puiseux,int,float,Fraction,long,complex]:
-            return mypoly({key : self.internal[key]-other for key in self.internal.keys()})
+            mp = {}
+            for key in self.internal.keys():
+                mp[key] = self.internal[key]-other
+            return mypoly(mp)
         elif type(other)==mypoly:
             toReturn = {}
             for key in self.internal.keys():
@@ -86,7 +94,10 @@ class mypoly(object):
 
     def __mul__(self, other):
         if type(other) in [puiseux,int,float,Fraction,long,complex]:
-            return mypoly({term:self.internal[term]*other for term in self.internal.keys()})
+            mp = {}
+            for key in self.internal.keys():
+                mp[key] = self.internal[key]*other
+            return mypoly(mp)
         elif type(other)==mypoly:
             toReturn = {}
             for key1 in other.internal.keys():
@@ -118,7 +129,10 @@ class mypoly(object):
         else: raise TypeError("can't do that")
 
     def __neg__(self):
-        return mypoly({term:(-self.internal[term]) for term in self.internal.keys()})
+        mp = {}
+        for key in self.internal.keys():
+            mp[key] = -self.internal[key]
+        return mypoly(mp)
 
     def __repr__(self):
         listy = sorted(self.internal.keys())

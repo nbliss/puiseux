@@ -24,7 +24,9 @@ class puiseux(object):
                     self.internal[exponent] += coeff
                 else: self.internal[exponent] = coeff
         else:
-            self.internal = {Fraction(elt[1][0],elt[1][1]):elt[0] for elt in poly}
+            self.internal = {}
+            for elt in poly:
+                self.internal[Fraction(elt[1][0],elt[1][1])] = elt[0]
         for key in self.internal.keys():
             if nearZero(self.internal[key]):
                 self.internal.pop(key)
@@ -53,7 +55,10 @@ class puiseux(object):
 
     def __add__(self,other):
         if type(other) in [int,float,Fraction,long,complex]:
-            return puiseux({key : other+self.internal[key] for key in self.internal.keys()})
+            pu = {}
+            for key in self.internal.keys():
+                pu[key] = other+self.internal[key] 
+            return puiseux(pu)
         elif type(other)==puiseux:
             toReturn = {}
             for key in self.internal.keys():
@@ -69,7 +74,10 @@ class puiseux(object):
 
     def __sub__(self, other):
         if type(other) in [int,float,Fraction,long,complex]:
-            return puiseux({key : self.internal[key]-other for key in self.internal.keys()})
+            pu = {}
+            for key in self.internal.keys():
+                pu[key] = self.internal[key]-other
+            return puiseux(pu)
         elif type(other)==puiseux:
             toReturn = {}
             for key in self.internal.keys():
@@ -86,7 +94,10 @@ class puiseux(object):
 
     def __mul__(self, other):
         if type(other) in [int,float,Fraction,long,complex]:
-            return puiseux({term:other*self.internal[term] for term in self.internal.keys()})
+            pu = {}
+            for key in self.internal.keys():
+                pu[key] = other*self.internal[key]
+            return puiseux(pu)
         elif type(other)==puiseux:
             toReturn = {}
             for key1 in other.internal.keys():
@@ -113,7 +124,10 @@ class puiseux(object):
         else: raise TypeError("can't do that")
 
     def __neg__(self):
-        return puiseux({term:0-self.internal[term] for term in self.internal.keys()})
+        pu = {}
+        for key in self.internal.keys():
+            pu[key] = 0-self.internal[key]
+        return puiseux(pu)
 
     def __rmul__(self,other):return self*other
     def __radd__(self,other):return self+other
@@ -167,7 +181,9 @@ class puiseux(object):
         return min(self.internal.keys())
 
     def commonDenom(self):
-        L = [term.denominator for term in self.internal.keys()]
+        L=[]
+        for term in self.internal.keys():
+            L.append(term.denominator)
         def lcm(a,b):
             prod = a*b
             while a:

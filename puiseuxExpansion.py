@@ -11,9 +11,13 @@ def initialTerms(poly,positivesOnly=False):
     first terms of each Puiseux solution of poly.
     """
     hull = lowerHull(poly.support())
-    slopes = [slp(hull[i],hull[i+1]) for i in xrange(len(hull)-1)]
+    slopes = []
+    for i in xrange(len(hull)-1):
+        slopes.append(slp(hull[i],hull[i+1])) 
     # dictionary with slope:[list of vertices on that edge]
-    slope_vertices = {slope:[] for slope in slopes}
+    slope_vertices = {}
+    for slope in slopes:
+        slope_vertices[slope] = []
     slope_vertices[slopes[0]].append(hull[0][0])
     oldSlope = slopes[0]
     for i in xrange(1,len(hull)):
@@ -25,14 +29,20 @@ def initialTerms(poly,positivesOnly=False):
     for slope in slope_vertices.keys():
         if positivesOnly and slope>=0: continue
         deg = max(slope_vertices[slope])
-        slope_roots[slope] = [0 for i in xrange(deg+1)]
+        toAdd = []
+        for i in xrange(deg+1):
+            toAdd.append(0)
+        slope_roots[slope] = toAdd
         for i in slope_vertices[slope]:
             slope_roots[slope][i] = poly.internal[i].LC()
         slope_roots[slope].reverse()
     for key in slope_roots.keys():
         while slope_roots[key][-1]==0: #don't care about coeffs that are 0
             slope_roots[key].pop()
-        slope_roots[key]=[complex(x) for x in np.roots(slope_roots[key])]
+        toAdd = []
+        for x in np.roots(slope_roots[key]):
+            toAdd.append(complex(x))
+        slope_roots[key] = toAdd
     toReturn = []
     for slope in slope_roots.keys():
         for coeff in slope_roots[slope]:
@@ -48,14 +58,15 @@ def initialTerms(poly,positivesOnly=False):
 
 
 def firstTerms(poly):
-    return [puiseux({gamma:c}) for (gamma,c) in initialTerms(poly)]
+    toReturn = []
+    for (gamma,c) in initialTerms(poly):
+        toReturn.append(puiseux({gamma:c})) 
+    return toReturn
 
 
 def solutionList(poly,nterms):
     if poly.degree()==0:return []
     toReturn = []
-    it = initialTerms(poly)
-    p = puiseux({it[0][0]:it[0][1]})
     for firstTerm in initialTerms(poly):
         recurse(poly,firstTerm,[firstTerm],toReturn,nterms)
     if len(toReturn)!=poly.degree():
@@ -82,7 +93,9 @@ def recurse(poly,currentMonomial,currentList,bigList,depth):
         bigList.append(currentList)
         return
     for term in nextTerms:
-        revisedList = [a for a in currentList]
+        revisedList = []
+        for a in currentList:
+            revisedList.append(a)
         revisedList.append((term[0]+currentList[-1][0],term[1]))
         recurse(nextPoly,term,revisedList,bigList,depth-1)
 
@@ -90,21 +103,36 @@ def recurse(poly,currentMonomial,currentList,bigList,depth):
 
 if __name__=='__main__':
     import sys
+    """
     try: n = int(sys.argv[1])
     except Exception: n = 0
+    """
+    try: s = sys.argv[1]
+    except Exception: s = 'circle'
     try: numterms = int(sys.argv[2])
     except Exception: numterms = 4
-    if n==0: p = mypoly({0:puiseux({1:1}),1:puiseux({0:2}),2:puiseux({1:1})})
-    elif n==1: p = mypoly({0:puiseux({4:2}),1:puiseux({2:1}),2:puiseux({1:4}),3:puiseux({0:4})})
-    elif n==2: p = mypoly({0:puiseux({Fraction(5):1}), 1:puiseux({Fraction(7,2):1}), 2:puiseux({Fraction(1):1}), 3:puiseux({Fraction(-1):1}), 5:puiseux({Fraction(-1,2):1}), 6:puiseux([[1,[1,2]]]), 7:puiseux([[1,[10,3]]]), 8:puiseux([[1,[5,2]]])})
-    elif n==3: p = mypoly({0:puiseux({1:1}),1:puiseux({2:2})})
-    elif n==4:  p = mypoly({0:puiseux({0:-1,2:1}),2:puiseux({0:1})})
-    else: p = mypoly({0:puiseux({2:1}),2:puiseux({0:1})})
+    optList = {'other':mypoly({0:puiseux({1:1}),1:puiseux({0:2}),2:puiseux({1:1})}),\
+               'arxiv':mypoly({0:puiseux({4:2}),1:puiseux({2:1}),2:puiseux({1:4}),3:puiseux({0:4})}),\
+               'walker':mypoly({0:puiseux({Fraction(5):1}), 1:puiseux({Fraction(7,2):1}), 2:puiseux({Fraction(1):1}), 3:puiseux({Fraction(-1):1}), 5:puiseux({Fraction(-1,2):1}), 6:puiseux([[1,[1,2]]]), 7:puiseux([[1,[10,3]]]), 8:puiseux([[1,[5,2]]])}),\
+               'terminates':mypoly({0:puiseux({1:1}),1:puiseux({2:2})}),\
+               'circle':mypoly({0:puiseux({0:-1,2:1}),2:puiseux({0:1})}),\
+               'squares':mypoly({0:puiseux({2:1}),2:puiseux({0:1})}),\
+               'ellipticNonsmooth':mypoly({2:puiseux({0:-1}),0:puiseux({3:1,1:-27,0:2*27})}),\
+               'ellipticSmooth':mypoly({2:puiseux({0:-1}),0:puiseux({3:1,1:1,0:1})})}
+    if s not in optList.keys() or s=='help':
+        toPrint = '\n'+s+' is not a valid option. Please choose from: \n'
+        toPrint += str(optList.keys())
+        raise Exception(toPrint)
+    p = optList[s]
     print p
     print "\n\n"
+    #print solutionList(p,numterms)
     for item in solutionList(p,numterms):
         print '---->----'
-        sol = puiseux({itemy[0]:itemy[1] for itemy in item})
+        pu = {}
+        for itemy in item:
+            pu[itemy[0]]=itemy[1]
+        sol = puiseux(pu)
         print 'Solution: ',sol
         print 'First term of p(solution): ',p(sol).LT()
         print '----<----'
