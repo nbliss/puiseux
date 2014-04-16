@@ -1,5 +1,0 @@
-Using the lower hull slopes gives the first exponent in the expansion. The points on a given edge give the equation in 'c'--coeffs are coefficients of the monomial y^a, and exponents on c are the 'a's.
-
-For a given value of c we have c*x^g1, the first term in the series. Plug (cx^g1 + y) into the original polynomial (for y) and we get a new polynomial. The positive slopes in its lower hull give g2 and (hopefully?) the coefficient c2 on the next term as before. So the next term is c2*x^(g1+g2).
-
-Continue this process to expand for a given 'c'.

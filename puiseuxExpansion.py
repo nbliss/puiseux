@@ -64,13 +64,21 @@ def firstTerms(poly):
     return toReturn
 
 
-def solutionList(poly,nterms):
+def solutionList(poly,nterms,asPuiseuxObject=False):
     if poly.degree()==0:return []
     toReturn = []
     for firstTerm in initialTerms(poly):
-        recurse(poly,firstTerm,[firstTerm],toReturn,nterms)
+        recurse(poly,firstTerm,[firstTerm],toReturn,nterms-1)
     if len(toReturn)!=poly.degree():
         print "Uh-oh. Polynomial is degree ",poly.degree()," but we've found ",len(toReturn)," solutions"
+    if asPuiseuxObject:
+        newRet = []
+        for item in toReturn:
+            pu = {}
+            for pair in item:
+                pu[pair[0]]=pair[1]
+            newRet.append(puiseux(pu))
+        toReturn = newRet
     return toReturn
 
 def recurse(poly,currentMonomial,currentList,bigList,depth):
