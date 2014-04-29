@@ -71,6 +71,8 @@ def solutionList(poly,nterms,asPuiseuxObject=False):
         recurse(poly,firstTerm,[firstTerm],toReturn,nterms-1)
     if len(toReturn)!=poly.degree():
         print "Uh-oh. Polynomial is degree ",poly.degree()," but we've found ",len(toReturn)," solutions"
+    
+    # return as a list of puiseux objects instead of a list of term tuples
     if asPuiseuxObject:
         newRet = []
         for item in toReturn:
@@ -88,7 +90,7 @@ def recurse(poly,currentMonomial,currentList,bigList,depth):
     Working with lists instead of Puiseux objects for speed and ease of access
     Assumes currentMonomial is already in the list, and adds the new ones found.
     """
-    if depth==0:
+    if depth<1:
         bigList.append(currentList)
         return
     toPlug = mypoly({1:puiseux({currentMonomial[0]:1}),0:puiseux({currentMonomial[0]:currentMonomial[1]})})
@@ -123,6 +125,7 @@ if __name__=='__main__':
                'arxiv':mypoly({0:puiseux({4:2}),1:puiseux({2:1}),2:puiseux({1:4}),3:puiseux({0:4})}),\
                'walker':mypoly({0:puiseux({Fraction(5):1}), 1:puiseux({Fraction(7,2):1}), 2:puiseux({Fraction(1):1}), 3:puiseux({Fraction(-1):1}), 5:puiseux({Fraction(-1,2):1}), 6:puiseux([[1,[1,2]]]), 7:puiseux([[1,[10,3]]]), 8:puiseux([[1,[5,2]]])}),\
                'terminates':mypoly({0:puiseux({1:1}),1:puiseux({2:2})}),\
+               'seminar':mypoly({2:puiseux({0:1}),1:puiseux({1:2,2:2}),0:puiseux({0:-1})}),\
                'circle':mypoly({0:puiseux({0:-1,2:1}),2:puiseux({0:1})}),\
                'squares':mypoly({0:puiseux({2:1}),2:puiseux({0:1})}),\
                'ellipticNonsmooth':mypoly({2:puiseux({0:-1}),0:puiseux({3:1,1:-27,0:2*27})}),\
@@ -142,6 +145,7 @@ if __name__=='__main__':
             pu[itemy[0]]=itemy[1]
         sol = puiseux(pu)
         print 'Solution: ',sol
+        print p(sol)
         print 'First term of p(solution): ',p(sol).LT()
         print '----<----'
 

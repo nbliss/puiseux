@@ -67,9 +67,9 @@ def ploty(points):
 
 if __name__=='__main__':
    points = [[1,10],[1,5],[2,3],[3,3],[3,5],[4,4],[5,5],[4,6],[6,9]]
-   points = [[0, Fraction(5, 1)], [1, Fraction(7, 2)], [2, Fraction(1, 1)], [3, Fraction(-1, 1)], [5, Fraction(-1, 2)], [6, Fraction(1, 2)], [7, Fraction(10, 3)], [8, Fraction(5, 2)]]
+   #points = [[0, Fraction(5, 1)], [1, Fraction(7, 2)], [2, Fraction(1, 1)], [3, Fraction(-1, 1)], [5, Fraction(-1, 2)], [6, Fraction(1, 2)], [7, Fraction(10, 3)], [8, Fraction(5, 2)]]
    print points
-   points = [[0,4],[1,3],[3,2],[5,1],[7,0]]
+   #points = [[0,4],[1,3],[3,2],[5,1],[7,0]]
    hull = lowerHull(points)
    print hull
    ploty(points)
