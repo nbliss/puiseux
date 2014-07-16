@@ -136,6 +136,16 @@ class puiseux(object):
     def __radd__(self,other):return self+other
     def __rsub__(self,other):return (-self)+other
 
+    def __call__(self,value):
+        # Will break on fractional exponents!!!!
+        # Wait...Python allows fractions as exponents, so might be fine
+        toReturn = 0
+        for ex in self.internal:
+            if ex.denominator!=1:
+                raise TypeError("Trying to use "+str(ex)+" as an exponent")
+            toReturn += self.internal[ex]*value**ex
+        return toReturn
+
     def __repr__(self):
         listy = sorted(self.internal.keys())
         if len(listy)==0: return '0'

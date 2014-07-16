@@ -14,7 +14,6 @@ def solLists(poly,NUMTERMS,solNum=0):
     up through NUMTERMS terms, and returns these in one big list.
     """
     s = solutionList(poly,NUMTERMS)[solNum]
-
     sols = []
 
     for i in xrange(2,len(s)):
@@ -31,7 +30,7 @@ def solLists(poly,NUMTERMS,solNum=0):
             toAdd.append([roots[j].real,roots[j].imag])
         toAdd = [[item[0] for item in toAdd],[item[1] for item in toAdd]]
         sols.append(toAdd)
-    return sols
+    return sols,len(s)
 
 def minmax(sols):
     """
@@ -62,7 +61,7 @@ class ChangingPlot(object):
     the truncated power series for the number of terms on the slider.
     """
     def __init__(self,poly,NUMTERMS):
-        self.sols = solLists(poly,NUMTERMS)         
+        self.sols,self.NUMTERMS = solLists(poly,NUMTERMS)
         self.windowBounds = minmax(self.sols)
         self.inc = 1.0
 
@@ -70,7 +69,7 @@ class ChangingPlot(object):
         self.sliderax = self.fig.add_axes([0.2, 0.02, 0.6, 0.03],
                                           axisbg='yellow')
 
-        self.slider = Slider(self.sliderax, 'Value', 0, NUMTERMS-3, valinit=self.inc)
+        self.slider = Slider(self.sliderax, 'Value', 0, self.NUMTERMS-3, valinit=self.inc)
         self.slider.on_changed(self.update)
         self.slider.drawon = False
 
@@ -87,10 +86,9 @@ class ChangingPlot(object):
         plt.show()
 
 
-NUMTERMS = 20
-poly = mypoly({0:puiseux({0:-1,1:-1,2:1}),2:puiseux({0:1})})
+NUMTERMS = 75
+poly = mypoly({0:puiseux({0:-1,2:1}),2:puiseux({0:1})})
 print solutionList(poly,4)
-print solutionList(poly,8,True)
 #poly = mypoly({2:puiseux({0:-1}),0:puiseux({3:1,1:-27,0:2*27})})
 p = ChangingPlot(poly,NUMTERMS)
 if '-s' in sys.argv:
