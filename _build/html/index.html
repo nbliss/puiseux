@@ -1,0 +1,463 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Welcome to Puiseux Project’s documentation! &mdash; Puiseux Project 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="Puiseux Project 1.0 documentation" href="#" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">Puiseux Project 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="welcome-to-puiseux-project-s-documentation">
+<h1>Welcome to Puiseux Project&#8217;s documentation!<a class="headerlink" href="#welcome-to-puiseux-project-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<span class="target" id="module-expandParallel"></span><dl class="function">
+<dt id="expandParallel.firstTerms">
+<tt class="descclassname">expandParallel.</tt><tt class="descname">firstTerms</tt><big>(</big><em>poly</em><big>)</big><a class="headerlink" href="#expandParallel.firstTerms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using <a class="reference internal" href="#expandParallel.initialTerms" title="expandParallel.initialTerms"><tt class="xref py py-func docutils literal"><span class="pre">initialTerms()</span></tt></a>, returns a list of the first
+terms of the puiseux solotions of <tt class="xref py py-data docutils literal"><span class="pre">poly</span></tt> as <a class="reference internal" href="#puiseuxPoly.puiseux" title="puiseuxPoly.puiseux"><tt class="xref py py-class docutils literal"><span class="pre">puiseuxPoly.puiseux</span></tt></a> objects.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="expandParallel.initialTerms">
+<tt class="descclassname">expandParallel.</tt><tt class="descname">initialTerms</tt><big>(</big><em>poly</em>, <em>positivesOnly=False</em><big>)</big><a class="headerlink" href="#expandParallel.initialTerms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of (<em>gamma,c)</em> pairs giving the
+first terms of each Puiseux solution of <tt class="xref py py-data docutils literal"><span class="pre">poly</span></tt>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="expandParallel.recurse">
+<tt class="descclassname">expandParallel.</tt><tt class="descname">recurse</tt><big>(</big><em>poly</em>, <em>currentMonomial</em>, <em>currentList</em>, <em>q</em>, <em>depth</em><big>)</big><a class="headerlink" href="#expandParallel.recurse" title="Permalink to this definition">¶</a></dt>
+<dd><p>bigList will contain lists of terms for each solution (list of lists).
+currentList is the one we&#8217;re currently computing.
+Working with lists instead of Puiseux objects for speed and ease of access
+Assumes currentMonomial is already in the list, and adds the new ones found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="expandParallel.solutionList">
+<tt class="descclassname">expandParallel.</tt><tt class="descname">solutionList</tt><big>(</big><em>poly</em>, <em>nterms</em>, <em>asPuiseuxObject=False</em><big>)</big><a class="headerlink" href="#expandParallel.solutionList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls <a class="reference internal" href="#expandParallel.recurse" title="expandParallel.recurse"><tt class="xref py py-func docutils literal"><span class="pre">recurse()</span></tt></a> in parallel to compute a list
+of the first <tt class="xref py py-data docutils literal"><span class="pre">nterms</span></tt> puiseux series solutions of
+<tt class="xref py py-data docutils literal"><span class="pre">poly</span></tt>. If <tt class="xref py py-data docutils literal"><span class="pre">asPuiseuxObject</span></tt> is false, they are
+returned as lists of <em>(gamma,c)</em> pairs; otherwise they are returned
+as <a class="reference internal" href="#puiseuxPoly.puiseux" title="puiseuxPoly.puiseux"><tt class="xref py py-class docutils literal"><span class="pre">puiseuxPoly.puiseux</span></tt></a> objects.</p>
+</dd></dl>
+
+<span class="target" id="module-mypoly"></span><dl class="class">
+<dt id="mypoly.mypoly">
+<em class="property">class </em><tt class="descclassname">mypoly.</tt><tt class="descname">mypoly</tt><big>(</big><em>poly</em>, <em>checkReduced=True</em><big>)</big><a class="headerlink" href="#mypoly.mypoly" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a univariate polynomial with <a class="reference internal" href="#puiseuxPoly.puiseux" title="puiseuxPoly.puiseux"><tt class="xref py py-class docutils literal"><span class="pre">puiseuxPoly.puiseux</span></tt></a>
+coefficients.</p>
+<dl class="method">
+<dt id="mypoly.mypoly.__add__">
+<tt class="descname">__add__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__add__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__call__">
+<tt class="descname">__call__</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__call__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mypoly.mypoly.__dict__">
+<tt class="descname">__dict__</tt><em class="property"> = dict_proxy({'__module__': 'mypoly', 'degree': &lt;function degree at 0x10b7a2c08&gt;, 'evaluate': &lt;function evaluate at 0x10b7a2b18&gt;, '__str__': &lt;function __str__ at 0x10b7a2a28&gt;, '__radd__': &lt;function __radd__ at 0x10b7a27d0&gt;, '__dict__': &lt;attribute '__dict__' of 'mypoly' objects&gt;, '__rsub__': &lt;function __rsub__ at 0x10b7a2848&gt;, '__pow__': &lt;function __pow__ at 0x10b7a28c0&gt;, '__add__': &lt;function __add__ at 0x10b7a25f0&gt;, '__rmul__': &lt;function __rmul__ at 0x10b7a2758&gt;, '__eq__': &lt;function __eq__ at 0x10b7a2578&gt;, '__init__': &lt;function __init__ at 0x10b7a2500&gt;, '__weakref__': &lt;attribute '__weakref__' of 'mypoly' objects&gt;, 'support': &lt;function support at 0x10b7a2b90&gt;, '__mul__': &lt;function __mul__ at 0x10b7a26e0&gt;, '__repr__': &lt;function __repr__ at 0x10b7a29b0&gt;, '__call__': &lt;function __call__ at 0x10b7a2aa0&gt;, '__sub__': &lt;function __sub__ at 0x10b7a2668&gt;, '__doc__': '\n    Represents a univariate polynomial with :py:class:`puiseuxPoly.puiseux`\n    coefficients.\n    ', '__neg__': &lt;function __neg__ at 0x10b7a2938&gt;})</em><a class="headerlink" href="#mypoly.mypoly.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__eq__">
+<tt class="descname">__eq__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>poly</em>, <em>checkReduced=True</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>2x^2-3x+1 would be input as [[2,2],[-3,1],[1,0]]
+and represented internally as {2:2,1:-3,0:1} i.e. the keys
+are the exponents and the values are the coefficients
+&#8211;OR&#8211; can be input as a dictionary, in which case it will
+just be copied to internal</p>
+<p>Coefficients can be complex, int, long (if you really want to),
+or (in the most usefull case) puiseux polynomials (using the
+puiseuxPoly class)</p>
+<p>checkReduced is a flag that determines if when setting
+up the internal representation we check for like terms.
+Be careful with it!!! If poly is a dict, checkReduced doesn&#8217;t
+matter since it can&#8217;t have repeated keys (exponents)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="mypoly.mypoly.__module__">
+<tt class="descname">__module__</tt><em class="property"> = 'mypoly'</em><a class="headerlink" href="#mypoly.mypoly.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__mul__">
+<tt class="descname">__mul__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__mul__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__neg__">
+<tt class="descname">__neg__</tt><big>(</big><big>)</big><a class="headerlink" href="#mypoly.mypoly.__neg__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__pow__">
+<tt class="descname">__pow__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__pow__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__radd__">
+<tt class="descname">__radd__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__radd__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__repr__">
+<tt class="descname">__repr__</tt><big>(</big><big>)</big><a class="headerlink" href="#mypoly.mypoly.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__rmul__">
+<tt class="descname">__rmul__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__rmul__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__rsub__">
+<tt class="descname">__rsub__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__rsub__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__str__">
+<tt class="descname">__str__</tt><big>(</big><big>)</big><a class="headerlink" href="#mypoly.mypoly.__str__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.__sub__">
+<tt class="descname">__sub__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__sub__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mypoly.mypoly.__weakref__">
+<tt class="descname">__weakref__</tt><a class="headerlink" href="#mypoly.mypoly.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.degree">
+<tt class="descname">degree</tt><big>(</big><big>)</big><a class="headerlink" href="#mypoly.mypoly.degree" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.evaluate">
+<tt class="descname">evaluate</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.evaluate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="mypoly.mypoly.support">
+<tt class="descname">support</tt><big>(</big><big>)</big><a class="headerlink" href="#mypoly.mypoly.support" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-convexHull"></span><dl class="function">
+<dt id="convexHull.lowerHull">
+<tt class="descclassname">convexHull.</tt><tt class="descname">lowerHull</tt><big>(</big><em>inputpts</em><big>)</big><a class="headerlink" href="#convexHull.lowerHull" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of lists (2-dimensional points), computes
+their lower hull, i.e. returns a list of the points on
+the lower hull ordered in the positive x-direction.
+Uses the algorithm from ??&#8217;s <em>Computational Geometry</em></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="convexHull.ploty">
+<tt class="descclassname">convexHull.</tt><tt class="descname">ploty</tt><big>(</big><em>points</em><big>)</big><a class="headerlink" href="#convexHull.ploty" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uses <tt class="xref py py-mod docutils literal"><span class="pre">matplotlib</span></tt> to display a plot of the points and their
+lower hull connected with line segments.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="convexHull.slope">
+<tt class="descclassname">convexHull.</tt><tt class="descname">slope</tt><big>(</big><em>pt1</em>, <em>pt2</em><big>)</big><a class="headerlink" href="#convexHull.slope" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given two points (lists), returns the slope of the
+line connecting the two as a python <tt class="xref py py-class docutils literal"><span class="pre">fractions.Fraction</span></tt> object</p>
+</dd></dl>
+
+<span class="target" id="module-puiseuxExpansion"></span><dl class="function">
+<dt id="puiseuxExpansion.firstTerms">
+<tt class="descclassname">puiseuxExpansion.</tt><tt class="descname">firstTerms</tt><big>(</big><em>poly</em><big>)</big><a class="headerlink" href="#puiseuxExpansion.firstTerms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="puiseuxExpansion.initialTerms">
+<tt class="descclassname">puiseuxExpansion.</tt><tt class="descname">initialTerms</tt><big>(</big><em>poly</em>, <em>positivesOnly=False</em><big>)</big><a class="headerlink" href="#puiseuxExpansion.initialTerms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of (gamma,c) pairs giving the
+first terms of each Puiseux solution of poly.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="puiseuxExpansion.recurse">
+<tt class="descclassname">puiseuxExpansion.</tt><tt class="descname">recurse</tt><big>(</big><em>poly</em>, <em>currentMonomial</em>, <em>currentList</em>, <em>bigList</em>, <em>depth</em><big>)</big><a class="headerlink" href="#puiseuxExpansion.recurse" title="Permalink to this definition">¶</a></dt>
+<dd><p>bigList will contain lists of terms for each solution (list of lists).
+currentList is the one we&#8217;re currently computing.
+Working with lists instead of Puiseux objects for speed and ease of access
+Assumes currentMonomial is already in the list, and adds the new ones found.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="puiseuxExpansion.solutionIterators">
+<tt class="descclassname">puiseuxExpansion.</tt><tt class="descname">solutionIterators</tt><big>(</big><em>poly</em><big>)</big><a class="headerlink" href="#puiseuxExpansion.solutionIterators" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>* NOT IMPLEMENTED *</strong>
+Returns a list of generators of the Puiseux roots of poly.
+So solutionIterators(poly)[i].next() can be called repeatedly
+to show the ith solution of poly.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="puiseuxExpansion.solutionList">
+<tt class="descclassname">puiseuxExpansion.</tt><tt class="descname">solutionList</tt><big>(</big><em>poly</em>, <em>nterms</em>, <em>asPuiseuxObject=False</em><big>)</big><a class="headerlink" href="#puiseuxExpansion.solutionList" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-puiseuxPoly"></span><dl class="function">
+<dt id="puiseuxPoly.nearZero">
+<tt class="descclassname">puiseuxPoly.</tt><tt class="descname">nearZero</tt><big>(</big><em>a</em><big>)</big><a class="headerlink" href="#puiseuxPoly.nearZero" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="puiseuxPoly.puiseux">
+<em class="property">class </em><tt class="descclassname">puiseuxPoly.</tt><tt class="descname">puiseux</tt><big>(</big><em>poly</em>, <em>checkReduced=False</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="method">
+<dt id="puiseuxPoly.puiseux.LC">
+<tt class="descname">LC</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.LC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the leading coefficient</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.LT">
+<tt class="descname">LT</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.LT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the leading term</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.TT">
+<tt class="descname">TT</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.TT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the trailing term</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__add__">
+<tt class="descname">__add__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__add__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__call__">
+<tt class="descname">__call__</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__call__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="puiseuxPoly.puiseux.__dict__">
+<tt class="descname">__dict__</tt><em class="property"> = dict_proxy({'__ne__': &lt;function __ne__ at 0x10b7a01b8&gt;, '__module__': 'puiseuxPoly', '__repr__': &lt;function __repr__ at 0x10b7a0668&gt;, '__dict__': &lt;attribute '__dict__' of 'puiseux' objects&gt;, '__str__': &lt;function __str__ at 0x10b7a06e0&gt;, '__radd__': &lt;function __radd__ at 0x10b7a0500&gt;, '__hash__': &lt;function __hash__ at 0x10b7a0758&gt;, '__rsub__': &lt;function __rsub__ at 0x10b7a0578&gt;, '__pow__': &lt;function __pow__ at 0x10b7a0398&gt;, '__add__': &lt;function __add__ at 0x10b7a0230&gt;, '__rmul__': &lt;function __rmul__ at 0x10b7a0488&gt;, '__eq__': &lt;function __eq__ at 0x10b7a0140&gt;, '__init__': &lt;function __init__ at 0x10b7a00c8&gt;, 'LC': &lt;function LC at 0x10b7a08c0&gt;, '__weakref__': &lt;attribute '__weakref__' of 'puiseux' objects&gt;, 'TT': &lt;function TT at 0x10b7a0938&gt;, 'monicLT': &lt;function monicLT at 0x10b7a0848&gt;, '__doc__': None, 'LT': &lt;function LT at 0x10b7a07d0&gt;, 'commonDenom': &lt;function commonDenom at 0x10b7a0a28&gt;, '__neg__': &lt;function __neg__ at 0x10b7a0410&gt;, '__call__': &lt;function __call__ at 0x10b7a05f0&gt;, '__sub__': &lt;function __sub__ at 0x10b7a02a8&gt;, 'order': &lt;function order at 0x10b7a09b0&gt;, '__mul__': &lt;function __mul__ at 0x10b7a0320&gt;})</em><a class="headerlink" href="#puiseuxPoly.puiseux.__dict__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__eq__">
+<tt class="descname">__eq__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__eq__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__hash__">
+<tt class="descname">__hash__</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__hash__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__init__">
+<tt class="descname">__init__</tt><big>(</big><em>poly</em>, <em>checkReduced=False</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>2x^(2/3)-3x^(4/7) would be input as
+[[2,(2,3)],[-3,(1,7)]] and represented internally as
+{Fraction(1,7):-3,Fraction(2,3):2}
+&#8211;OR&#8211; input as a dictionary and just copied to internal</p>
+<p>checkReduced is a flag that determines if when setting
+up the internal representation we check for like terms.
+Be careful with it!!! If poly is a dict, checkReduced doesn&#8217;t
+matter since it can&#8217;t have repeated keys (exponents)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="puiseuxPoly.puiseux.__module__">
+<tt class="descname">__module__</tt><em class="property"> = 'puiseuxPoly'</em><a class="headerlink" href="#puiseuxPoly.puiseux.__module__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__mul__">
+<tt class="descname">__mul__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__mul__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__ne__">
+<tt class="descname">__ne__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__ne__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__neg__">
+<tt class="descname">__neg__</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__neg__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__pow__">
+<tt class="descname">__pow__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__pow__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__radd__">
+<tt class="descname">__radd__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__radd__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__repr__">
+<tt class="descname">__repr__</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__repr__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__rmul__">
+<tt class="descname">__rmul__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__rmul__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__rsub__">
+<tt class="descname">__rsub__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__rsub__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__str__">
+<tt class="descname">__str__</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__str__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.__sub__">
+<tt class="descname">__sub__</tt><big>(</big><em>other</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__sub__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="puiseuxPoly.puiseux.__weakref__">
+<tt class="descname">__weakref__</tt><a class="headerlink" href="#puiseuxPoly.puiseux.__weakref__" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of weak references to the object (if defined)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.commonDenom">
+<tt class="descname">commonDenom</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.commonDenom" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.monicLT">
+<tt class="descname">monicLT</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.monicLT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.order">
+<tt class="descname">order</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.order" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
+<li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
+<li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to Puiseux Project&#8217;s documentation!</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/index.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="#">Puiseux Project 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Nathan Bliss.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
