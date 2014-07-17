@@ -48,10 +48,22 @@ def initialTerms(poly,positivesOnly=False):
 
 
 def firstTerms(poly):
+    """
+    Using :py:func:`initialTerms`, returns a list of the first
+    terms of the puiseux solotions of :py:data:`poly` as :py:class:`puiseuxPoly.puiseux` objects.
+    """
     return [puiseux({gamma:c}) for (gamma,c) in initialTerms(poly)]
 
 
 def solutionList(poly,nterms,asPuiseuxObject=False):
+    """
+    Calls :py:func:`recurse` to compute a list
+    of the first :py:data:`nterms` puiseux series solutions of
+    :py:data:`poly`. If :py:data:`asPuiseuxObject` is false, they are
+    returned as lists of *(gamma,c)* pairs; otherwise they are returned
+    as :py:class:`puiseuxPoly.puiseux` objects.
+    """
+
     if poly.degree()==0:return []
     toReturn = []
     it = initialTerms(poly)

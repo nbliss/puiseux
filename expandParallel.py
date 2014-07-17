@@ -8,8 +8,8 @@ import numpy as np
 
 def initialTerms(poly,positivesOnly=False):
     """
-    Return a list of (gamma,c) pairs giving the
-    first terms of each Puiseux solution of poly.
+    Return a list of (*gamma,c)* pairs giving the
+    first terms of each Puiseux solution of :py:data:`poly`.
     """
     hull = lowerHull(poly.support())
     slopes = []
@@ -59,6 +59,10 @@ def initialTerms(poly,positivesOnly=False):
 
 
 def firstTerms(poly):
+    """
+    Using :py:func:`initialTerms`, returns a list of the first
+    terms of the puiseux solotions of :py:data:`poly` as :py:class:`puiseuxPoly.puiseux` objects.
+    """
     toReturn = []
     for (gamma,c) in initialTerms(poly):
         toReturn.append(puiseux({gamma:c})) 
@@ -66,6 +70,13 @@ def firstTerms(poly):
 
 
 def solutionList(poly,nterms,asPuiseuxObject=False):
+    """
+    Calls :py:func:`recurse` in parallel to compute a list
+    of the first :py:data:`nterms` puiseux series solutions of
+    :py:data:`poly`. If :py:data:`asPuiseuxObject` is false, they are
+    returned as lists of *(gamma,c)* pairs; otherwise they are returned
+    as :py:class:`puiseuxPoly.puiseux` objects.
+    """
     if poly.degree()==0:return []
     toReturn = []
     q = Queue()

@@ -85,11 +85,11 @@ class ChangingPlot(object):
     def show(self):
         plt.show()
 
-
-NUMTERMS = 75
-poly = mypoly({0:puiseux({0:-1,2:1}),2:puiseux({0:1})})
-print solutionList(poly,4)
-#poly = mypoly({2:puiseux({0:-1}),0:puiseux({3:1,1:-27,0:2*27})})
-p = ChangingPlot(poly,NUMTERMS)
-if '-s' in sys.argv:
-    p.show()
+if __name__=='__main__':
+    NUMTERMS = 75
+    poly = mypoly({0:puiseux({0:-1,2:1}),2:puiseux({0:1})})
+    print solutionList(poly,4)
+    #poly = mypoly({2:puiseux({0:-1}),0:puiseux({3:1,1:-27,0:2*27})})
+    p = ChangingPlot(poly,NUMTERMS)
+    if '-s' in sys.argv:
+        p.show()

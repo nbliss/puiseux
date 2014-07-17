@@ -1,6 +1,10 @@
 from puiseuxPoly import puiseux
 from fractions import Fraction
 class mypoly(object):
+    """
+    Represents a univariate polynomial with :py:class:`puiseuxPoly.puiseux`
+    coefficients.
+    """
     def __init__(self,poly,checkReduced=True):
         """
         2x^2-3x+1 would be input as [[2,2],[-3,1],[1,0]]
@@ -155,15 +159,29 @@ class mypoly(object):
     def __str__(self):
         return self.__repr__()
 
-    def __call__(self,value):return self.evaluate(value)
+    def __call__(self,value):
+        """
+        Calls :py:func:`evaluate`
+        """
+        return self.evaluate(value)
+
     def evaluate(self,value):
-        # Use horner's scheme to speed this up?
+        """
+        Evaluates self at value.
+
+        Use Horner's scheme to speed this up?
+        """
         toReturn = 0
         for exponent in self.internal.keys():
             toReturn = (value**exponent)*self.internal[exponent]+toReturn 
         return toReturn
 
     def support(self):
+        """
+        Returns a list of ordered pairs *(a,b)* where *a* is the degree
+        of a monomial in :py:data:`self` and *b* is the order of that monomial's
+        Puiseux coefficient.
+        """
         toReturn = []
         for key in self.internal.keys():
             coeff = self.internal[key]
@@ -174,6 +192,9 @@ class mypoly(object):
         return toReturn
 
     def degree(self):
+        """
+        Returns the degree of :py:data:`self`.
+        """
         return max(self.internal.keys())
 
 if __name__=='__main__':

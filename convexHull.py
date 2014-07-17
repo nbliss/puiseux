@@ -1,13 +1,10 @@
-"""
-convexHull.py
-Nathan Bliss
-Spring 2014
-Uses the algorithm from  ??'s Computational Geometry textbook
-"""
 from fractions import Fraction
 def lowerHull(inputpts):
    """
-   pts = [[a1,b1],...]
+   Given a list of lists (2-dimensional points), computes
+   their lower hull, i.e. returns a list of the points on
+   the lower hull ordered in the positive x-direction.
+   Uses the algorithm from ??'s *Computational Geometry*
    """
    sorter = lambda x,y:x[1]-y[1] if x[0]==y[0] else x[0]-y[0]
    pts = sorted(inputpts,cmp=sorter)
@@ -41,9 +38,17 @@ def lowerHull(inputpts):
 
 
 def slope(pt1,pt2):
+   """
+   Given two points (lists), returns the slope of the
+   line connecting the two as a python :py:class:`fractions.Fraction` object
+   """
    return Fraction(pt2[1]-pt1[1],pt2[0]-pt1[0])
 
 def ploty(points):
+   """
+   Uses :py:mod:`matplotlib` to display a plot of the points and their
+   lower hull connected with line segments.
+   """
    import matplotlib
    #matplotlib.use('macosx')
    import matplotlib.pyplot as plt

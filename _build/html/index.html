@@ -97,11 +97,12 @@ coefficients.</p>
 <dl class="method">
 <dt id="mypoly.mypoly.__call__">
 <tt class="descname">__call__</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.__call__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Calls <a class="reference internal" href="#mypoly.mypoly.evaluate" title="mypoly.mypoly.evaluate"><tt class="xref py py-func docutils literal"><span class="pre">evaluate()</span></tt></a></p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="mypoly.mypoly.__dict__">
-<tt class="descname">__dict__</tt><em class="property"> = dict_proxy({'__module__': 'mypoly', 'degree': &lt;function degree at 0x10b7a2c08&gt;, 'evaluate': &lt;function evaluate at 0x10b7a2b18&gt;, '__str__': &lt;function __str__ at 0x10b7a2a28&gt;, '__radd__': &lt;function __radd__ at 0x10b7a27d0&gt;, '__dict__': &lt;attribute '__dict__' of 'mypoly' objects&gt;, '__rsub__': &lt;function __rsub__ at 0x10b7a2848&gt;, '__pow__': &lt;function __pow__ at 0x10b7a28c0&gt;, '__add__': &lt;function __add__ at 0x10b7a25f0&gt;, '__rmul__': &lt;function __rmul__ at 0x10b7a2758&gt;, '__eq__': &lt;function __eq__ at 0x10b7a2578&gt;, '__init__': &lt;function __init__ at 0x10b7a2500&gt;, '__weakref__': &lt;attribute '__weakref__' of 'mypoly' objects&gt;, 'support': &lt;function support at 0x10b7a2b90&gt;, '__mul__': &lt;function __mul__ at 0x10b7a26e0&gt;, '__repr__': &lt;function __repr__ at 0x10b7a29b0&gt;, '__call__': &lt;function __call__ at 0x10b7a2aa0&gt;, '__sub__': &lt;function __sub__ at 0x10b7a2668&gt;, '__doc__': '\n    Represents a univariate polynomial with :py:class:`puiseuxPoly.puiseux`\n    coefficients.\n    ', '__neg__': &lt;function __neg__ at 0x10b7a2938&gt;})</em><a class="headerlink" href="#mypoly.mypoly.__dict__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__dict__</tt><em class="property"> = dict_proxy({'__module__': 'mypoly', 'degree': &lt;function degree at 0x10df6ac08&gt;, 'evaluate': &lt;function evaluate at 0x10df6ab18&gt;, '__str__': &lt;function __str__ at 0x10df6aa28&gt;, '__radd__': &lt;function __radd__ at 0x10df6a7d0&gt;, '__dict__': &lt;attribute '__dict__' of 'mypoly' objects&gt;, '__rsub__': &lt;function __rsub__ at 0x10df6a848&gt;, '__pow__': &lt;function __pow__ at 0x10df6a8c0&gt;, '__add__': &lt;function __add__ at 0x10df6a5f0&gt;, '__rmul__': &lt;function __rmul__ at 0x10df6a758&gt;, '__eq__': &lt;function __eq__ at 0x10df6a578&gt;, '__init__': &lt;function __init__ at 0x10df6a500&gt;, '__weakref__': &lt;attribute '__weakref__' of 'mypoly' objects&gt;, 'support': &lt;function support at 0x10df6ab90&gt;, '__mul__': &lt;function __mul__ at 0x10df6a6e0&gt;, '__repr__': &lt;function __repr__ at 0x10df6a9b0&gt;, '__call__': &lt;function __call__ at 0x10df6aaa0&gt;, '__sub__': &lt;function __sub__ at 0x10df6a668&gt;, '__doc__': '\n    Represents a univariate polynomial with :py:class:`puiseuxPoly.puiseux`\n    coefficients.\n    ', '__neg__': &lt;function __neg__ at 0x10df6a938&gt;})</em><a class="headerlink" href="#mypoly.mypoly.__dict__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -185,17 +186,23 @@ matter since it can&#8217;t have repeated keys (exponents)</p>
 <dl class="method">
 <dt id="mypoly.mypoly.degree">
 <tt class="descname">degree</tt><big>(</big><big>)</big><a class="headerlink" href="#mypoly.mypoly.degree" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the degree of <tt class="xref py py-data docutils literal"><span class="pre">self</span></tt>.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="mypoly.mypoly.evaluate">
 <tt class="descname">evaluate</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#mypoly.mypoly.evaluate" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Evaluates self at value.</p>
+<p>Use Horner&#8217;s scheme to speed this up?</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="mypoly.mypoly.support">
 <tt class="descname">support</tt><big>(</big><big>)</big><a class="headerlink" href="#mypoly.mypoly.support" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns a list of ordered pairs <em>(a,b)</em> where <em>a</em> is the degree
+of a monomial in <tt class="xref py py-data docutils literal"><span class="pre">self</span></tt> and <em>b</em> is the order of that monomial&#8217;s
+Puiseux coefficient.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -225,7 +232,9 @@ line connecting the two as a python <tt class="xref py py-class docutils literal
 <span class="target" id="module-puiseuxExpansion"></span><dl class="function">
 <dt id="puiseuxExpansion.firstTerms">
 <tt class="descclassname">puiseuxExpansion.</tt><tt class="descname">firstTerms</tt><big>(</big><em>poly</em><big>)</big><a class="headerlink" href="#puiseuxExpansion.firstTerms" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Using <a class="reference internal" href="#puiseuxExpansion.initialTerms" title="puiseuxExpansion.initialTerms"><tt class="xref py py-func docutils literal"><span class="pre">initialTerms()</span></tt></a>, returns a list of the first
+terms of the puiseux solotions of <tt class="xref py py-data docutils literal"><span class="pre">poly</span></tt> as <a class="reference internal" href="#puiseuxPoly.puiseux" title="puiseuxPoly.puiseux"><tt class="xref py py-class docutils literal"><span class="pre">puiseuxPoly.puiseux</span></tt></a> objects.</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="puiseuxExpansion.initialTerms">
@@ -255,32 +264,40 @@ to show the ith solution of poly.</p>
 <dl class="function">
 <dt id="puiseuxExpansion.solutionList">
 <tt class="descclassname">puiseuxExpansion.</tt><tt class="descname">solutionList</tt><big>(</big><em>poly</em>, <em>nterms</em>, <em>asPuiseuxObject=False</em><big>)</big><a class="headerlink" href="#puiseuxExpansion.solutionList" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Calls <a class="reference internal" href="#puiseuxExpansion.recurse" title="puiseuxExpansion.recurse"><tt class="xref py py-func docutils literal"><span class="pre">recurse()</span></tt></a> to compute a list
+of the first <tt class="xref py py-data docutils literal"><span class="pre">nterms</span></tt> puiseux series solutions of
+<tt class="xref py py-data docutils literal"><span class="pre">poly</span></tt>. If <tt class="xref py py-data docutils literal"><span class="pre">asPuiseuxObject</span></tt> is false, they are
+returned as lists of <em>(gamma,c)</em> pairs; otherwise they are returned
+as <a class="reference internal" href="#puiseuxPoly.puiseux" title="puiseuxPoly.puiseux"><tt class="xref py py-class docutils literal"><span class="pre">puiseuxPoly.puiseux</span></tt></a> objects.</p>
+</dd></dl>
 
 <span class="target" id="module-puiseuxPoly"></span><dl class="function">
 <dt id="puiseuxPoly.nearZero">
 <tt class="descclassname">puiseuxPoly.</tt><tt class="descname">nearZero</tt><big>(</big><em>a</em><big>)</big><a class="headerlink" href="#puiseuxPoly.nearZero" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns true if <em>a</em> is an int, long, or Fraction is and ==0</p>
+<p>Returns true if <em>a</em> is a float or complex and is near 0.</p>
+</dd></dl>
 
 <dl class="class">
 <dt id="puiseuxPoly.puiseux">
 <em class="property">class </em><tt class="descclassname">puiseuxPoly.</tt><tt class="descname">puiseux</tt><big>(</big><em>poly</em>, <em>checkReduced=False</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><p>Class to represent (truncated) Puiseux series.</p>
+<dl class="method">
 <dt id="puiseuxPoly.puiseux.LC">
 <tt class="descname">LC</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.LC" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the leading coefficient</p>
+<dd><p>Returns the leading coefficient.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="puiseuxPoly.puiseux.LT">
 <tt class="descname">LT</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.LT" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the leading term</p>
+<dd><p>Returns the leading term.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="puiseuxPoly.puiseux.TT">
 <tt class="descname">TT</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.TT" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the trailing term</p>
+<dd><p>Return the trailing term.</p>
 </dd></dl>
 
 <dl class="method">
@@ -291,11 +308,14 @@ to show the ith solution of poly.</p>
 <dl class="method">
 <dt id="puiseuxPoly.puiseux.__call__">
 <tt class="descname">__call__</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.__call__" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Evaluates <tt class="xref py py-obj docutils literal"><span class="pre">self</span></tt>.</p>
+<p>Will break on fractional exponents!!!!</p>
+<p>Wait...Python allows fractions as exponents, so might be fine</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="puiseuxPoly.puiseux.__dict__">
-<tt class="descname">__dict__</tt><em class="property"> = dict_proxy({'__ne__': &lt;function __ne__ at 0x10b7a01b8&gt;, '__module__': 'puiseuxPoly', '__repr__': &lt;function __repr__ at 0x10b7a0668&gt;, '__dict__': &lt;attribute '__dict__' of 'puiseux' objects&gt;, '__str__': &lt;function __str__ at 0x10b7a06e0&gt;, '__radd__': &lt;function __radd__ at 0x10b7a0500&gt;, '__hash__': &lt;function __hash__ at 0x10b7a0758&gt;, '__rsub__': &lt;function __rsub__ at 0x10b7a0578&gt;, '__pow__': &lt;function __pow__ at 0x10b7a0398&gt;, '__add__': &lt;function __add__ at 0x10b7a0230&gt;, '__rmul__': &lt;function __rmul__ at 0x10b7a0488&gt;, '__eq__': &lt;function __eq__ at 0x10b7a0140&gt;, '__init__': &lt;function __init__ at 0x10b7a00c8&gt;, 'LC': &lt;function LC at 0x10b7a08c0&gt;, '__weakref__': &lt;attribute '__weakref__' of 'puiseux' objects&gt;, 'TT': &lt;function TT at 0x10b7a0938&gt;, 'monicLT': &lt;function monicLT at 0x10b7a0848&gt;, '__doc__': None, 'LT': &lt;function LT at 0x10b7a07d0&gt;, 'commonDenom': &lt;function commonDenom at 0x10b7a0a28&gt;, '__neg__': &lt;function __neg__ at 0x10b7a0410&gt;, '__call__': &lt;function __call__ at 0x10b7a05f0&gt;, '__sub__': &lt;function __sub__ at 0x10b7a02a8&gt;, 'order': &lt;function order at 0x10b7a09b0&gt;, '__mul__': &lt;function __mul__ at 0x10b7a0320&gt;})</em><a class="headerlink" href="#puiseuxPoly.puiseux.__dict__" title="Permalink to this definition">¶</a></dt>
+<tt class="descname">__dict__</tt><em class="property"> = dict_proxy({'__ne__': &lt;function __ne__ at 0x10df651b8&gt;, '__module__': 'puiseuxPoly', '__repr__': &lt;function __repr__ at 0x10df65668&gt;, '__dict__': &lt;attribute '__dict__' of 'puiseux' objects&gt;, '__str__': &lt;function __str__ at 0x10df656e0&gt;, '__radd__': &lt;function __radd__ at 0x10df65500&gt;, '__hash__': &lt;function __hash__ at 0x10df65758&gt;, '__rsub__': &lt;function __rsub__ at 0x10df65578&gt;, '__pow__': &lt;function __pow__ at 0x10df65398&gt;, '__add__': &lt;function __add__ at 0x10df65230&gt;, '__rmul__': &lt;function __rmul__ at 0x10df65488&gt;, '__eq__': &lt;function __eq__ at 0x10df65140&gt;, '__init__': &lt;function __init__ at 0x10df650c8&gt;, 'LC': &lt;function LC at 0x10df658c0&gt;, '__weakref__': &lt;attribute '__weakref__' of 'puiseux' objects&gt;, 'TT': &lt;function TT at 0x10df65938&gt;, 'monicLT': &lt;function monicLT at 0x10df65848&gt;, 'order': &lt;function order at 0x10df659b0&gt;, 'LT': &lt;function LT at 0x10df657d0&gt;, 'commonDenom': &lt;function commonDenom at 0x10df65a28&gt;, '__neg__': &lt;function __neg__ at 0x10df65410&gt;, '__call__': &lt;function __call__ at 0x10df655f0&gt;, '__sub__': &lt;function __sub__ at 0x10df652a8&gt;, '__doc__': '\n    Class to represent (truncated) Puiseux series.\n    ', '__mul__': &lt;function __mul__ at 0x10df65320&gt;})</em><a class="headerlink" href="#puiseuxPoly.puiseux.__dict__" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -385,17 +405,20 @@ matter since it can&#8217;t have repeated keys (exponents)</p>
 <dl class="method">
 <dt id="puiseuxPoly.puiseux.commonDenom">
 <tt class="descname">commonDenom</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.commonDenom" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the common denominator of the exponents.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="puiseuxPoly.puiseux.monicLT">
 <tt class="descname">monicLT</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.monicLT" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns a monic version of the leading term.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="puiseuxPoly.puiseux.order">
 <tt class="descname">order</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.order" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the minimum exponent.</p>
+</dd></dl>
 
 </dd></dl>
 

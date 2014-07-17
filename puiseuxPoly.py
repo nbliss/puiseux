@@ -1,6 +1,9 @@
 from fractions import Fraction
 TOLERANCE=1e-8
 class puiseux(object):
+    """
+    Class to represent (truncated) Puiseux series.
+    """
     def __init__(self,poly,checkReduced=False):
         """
         2x^(2/3)-3x^(4/7) would be input as
@@ -137,8 +140,13 @@ class puiseux(object):
     def __rsub__(self,other):return (-self)+other
 
     def __call__(self,value):
-        # Will break on fractional exponents!!!!
-        # Wait...Python allows fractions as exponents, so might be fine
+        """
+        Evaluates :py:obj:`self`.
+
+        Will break on fractional exponents!!!!
+
+        Wait...Python allows fractions as exponents, so might be fine
+        """
         toReturn = 0
         for ex in self.internal:
             if ex.denominator!=1:
@@ -170,30 +178,39 @@ class puiseux(object):
 
     def LT(self):
         """
-        Returns the leading term
+        Returns the leading term.
         """
         lt = min(self.internal.keys())
         return puiseux({lt:self.internal[lt]})
 
     def monicLT(self):
+        """
+        Returns a monic version of the leading term.
+        """
         return puiseux({min(self.internal.keys()):1})
 
     def LC(self):
         """
-        Returns the leading coefficient
+        Returns the leading coefficient.
         """
         return self.internal[min(self.internal.keys())]
 
     def TT(self):
         """
-        Return the trailing term
+        Return the trailing term.
         """
         return self.internal[max(self.internal.keys())]
 
     def order(self):
+        """
+        Returns the minimum exponent.
+        """
         return min(self.internal.keys())
 
     def commonDenom(self):
+        """
+        Returns the common denominator of the exponents.
+        """
         L=[]
         for term in self.internal.keys():
             L.append(term.denominator)
@@ -205,6 +222,11 @@ class puiseux(object):
         return reduce(lcm,L)
 
 def nearZero(a):
+    """
+    Returns true if *a* is an int, long, or Fraction is and ==0
+
+    Returns true if *a* is a float or complex and is near 0.
+    """
     if type(a) in [int, long]: return a==0
     if type(a) in [float,complex]:
         return abs(a)<TOLERANCE
