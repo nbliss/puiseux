@@ -1,7 +1,0 @@
-plotRoots module
-================
-
-.. automodule:: plotRoots
-    :members:
-    :undoc-members:
-    :show-inheritance:

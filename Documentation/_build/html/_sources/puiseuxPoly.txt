@@ -1,7 +1,0 @@
-puiseuxPoly module
-==================
-
-.. automodule:: puiseuxPoly
-    :members:
-    :undoc-members:
-    :show-inheritance:

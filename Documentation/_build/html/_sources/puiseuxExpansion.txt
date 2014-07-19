@@ -1,7 +1,0 @@
-puiseuxExpansion module
-=======================
-
-.. automodule:: puiseuxExpansion
-    :members:
-    :undoc-members:
-    :show-inheritance:

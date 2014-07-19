@@ -1,7 +1,0 @@
-convexHull module
-=================
-
-.. automodule:: convexHull
-    :members:
-    :undoc-members:
-    :show-inheritance:
