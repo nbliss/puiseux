@@ -15,7 +15,9 @@ class mypoly(object):
 
         Coefficients can be complex, int, long (if you really want to),
         or (in the most usefull case) puiseux polynomials (using the
-        puiseuxPoly class)
+        puiseuxPoly class).
+
+        **Maybe not**: they might need to be Puiseux objects?
 
         checkReduced is a flag that determines if when setting
         up the internal representation we check for like terms.

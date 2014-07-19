@@ -223,9 +223,9 @@ class puiseux(object):
 
 def nearZero(a):
     """
-    Returns true if *a* is an int, long, or Fraction is and ==0
+    Returns true if *a* is an int, long, or Fraction is and ==0.
 
-    Returns true if *a* is a float or complex and is near 0.
+    Also returns true if *a* is a float or complex and is near 0.
     """
     if type(a) in [int, long]: return a==0
     if type(a) in [float,complex]:
