@@ -1,0 +1,7 @@
+mypoly module
+=============
+
+.. automodule:: mypoly
+    :members:
+    :undoc-members:
+    :show-inheritance:

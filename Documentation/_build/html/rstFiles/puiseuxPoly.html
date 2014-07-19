@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>puiseuxPoly module &mdash; Puiseux Project 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Puiseux Project 1.0 documentation" href="../index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Puiseux Project 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-puiseuxPoly">
+<span id="puiseuxpoly-module"></span><h1>puiseuxPoly module<a class="headerlink" href="#module-puiseuxPoly" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="puiseuxPoly.nearZero">
+<tt class="descclassname">puiseuxPoly.</tt><tt class="descname">nearZero</tt><big>(</big><em>a</em><big>)</big><a class="headerlink" href="#puiseuxPoly.nearZero" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns true if <em>a</em> is an int, long, or Fraction is and ==0</p>
+<p>Returns true if <em>a</em> is a float or complex and is near 0.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="puiseuxPoly.puiseux">
+<em class="property">class </em><tt class="descclassname">puiseuxPoly.</tt><tt class="descname">puiseux</tt><big>(</big><em>poly</em>, <em>checkReduced=False</em><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Class to represent (truncated) Puiseux series.</p>
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.LC">
+<tt class="descname">LC</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.LC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the leading coefficient.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.LT">
+<tt class="descname">LT</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.LT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the leading term.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.TT">
+<tt class="descname">TT</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.TT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the trailing term.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.commonDenom">
+<tt class="descname">commonDenom</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.commonDenom" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the common denominator of the exponents.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.monicLT">
+<tt class="descname">monicLT</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.monicLT" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a monic version of the leading term.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="puiseuxPoly.puiseux.order">
+<tt class="descname">order</tt><big>(</big><big>)</big><a class="headerlink" href="#puiseuxPoly.puiseux.order" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the minimum exponent.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/rstFiles/puiseuxPoly.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">Puiseux Project 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Nathan Bliss.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

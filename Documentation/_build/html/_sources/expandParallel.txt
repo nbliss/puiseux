@@ -1,0 +1,7 @@
+expandParallel module
+=====================
+
+.. automodule:: expandParallel
+    :members:
+    :undoc-members:
+    :show-inheritance:
