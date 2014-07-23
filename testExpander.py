@@ -28,10 +28,7 @@ class tester(object):
     def testIncreasingExps(self,trials,numterms=6):
         for i in xrange(trials):
             p = self.genRandom()
-            try:
-                sols = self.toTest(p,numterms,True)
-            except Exception:
-                print p
+            sols = self.toTest(p,numterms,True)
             for sol in sols:
                 expList = [p(sol.trunc(j)).order() for j in xrange(1,numterms)]
                 for k in xrange(len(expList)-1):
