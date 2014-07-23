@@ -79,6 +79,11 @@ def solutionList(poly,nterms,asPuiseuxObject=False):
     """
     if poly.degree()==0:return []
     toReturn = []
+    lowest = poly.lowestDegree()
+    if lowest>0:
+        toReturn+=[puiseux({0:0}) for i in xrange(lowest)]
+    oldPoly = poly
+    poly = poly.reduced()
     q = Queue()
     inTerms = initialTerms(poly)
     procList = [] ######
@@ -94,8 +99,15 @@ def solutionList(poly,nterms,asPuiseuxObject=False):
     while toAdd !=0:
         toReturn.append(toAdd) ######
         toAdd = q.get()
-    if len(toReturn)!=poly.degree():
+    if len(toReturn)!=poly.degree()+lowest:
+        print "---------\/--------"
         print "Uh-oh. Polynomial is degree ",poly.degree()," but we've found ",len(toReturn)," solutions"
+        print poly
+        print oldPoly
+        print poly.support()
+        print poly.lowestDegree()
+        print toReturn
+        print "---------/\--------"
     
     # return as a list of puiseux objects instead of a list of term tuples
     if asPuiseuxObject:

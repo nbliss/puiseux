@@ -63,14 +63,17 @@ def solutionList(poly,nterms,asPuiseuxObject=False):
     returned as lists of *(gamma,c)* pairs; otherwise they are returned
     as :py:class:`puiseuxPoly.puiseux` objects.
     """
-
     if poly.degree()==0:return []
     toReturn = []
+    lowest = poly.lowestDegree()
+    if lowest>0:
+        toReturn+=[puiseux({0:0}) for i in xrange(lowest)]
+    poly = poly.reduced()
     it = initialTerms(poly)
     p = puiseux({it[0][0]:it[0][1]})
     for firstTerm in initialTerms(poly):
         recurse(poly,firstTerm,[firstTerm],toReturn,nterms-1)
-    if len(toReturn)!=poly.degree():
+    if len(toReturn)!=poly.degree()+lowest:
         print "Uh-oh. Polynomial is degree ",poly.degree()," but we've found ",len(toReturn)," solutions"
     # return as a list of puiseux objects instead of a list of term tuples
     if asPuiseuxObject:
