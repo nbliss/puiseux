@@ -199,6 +199,23 @@ class mypoly(object):
         """
         return max(self.internal.keys())
 
+    def lowestDegree(self):
+        """
+        Returns the degree of the lowest-degree monomial.
+        """
+        return min(self.internal.keys())
+
+    def reduced(self):
+        """
+        Returns ``self`` without any (y-0) factors.
+        """
+        toReturn = {}
+        lowest = self.lowestDegree()
+        for i in self.internal.keys():
+            toReturn[i-lowest] = self.internal[i]
+        return mypoly(toReturn)
+
+
 if __name__=='__main__':
     poly = mypoly({0:puiseux({2:1,3:-1}),1:puiseux({1:-2}),2:puiseux({0:1})})
     poly = mypoly({0:puiseux({4:2}),1:puiseux({2:1}),2:puiseux({1:4}),3:puiseux({0:4})})

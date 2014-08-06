@@ -26,15 +26,30 @@ class tester(object):
         self.__init__(toTest,ydeg,xdeg,fracExps)
 
     def testIncreasingExps(self,trials,numterms=6):
+        import cPickle
         for i in xrange(trials):
+            print '\rRunning trial '+str(i+1)+' of '+str(trials)+' ',
             p = self.genRandom()
-            sols = self.toTest(p,numterms,True)
-            for sol in sols:
-                expList = [p(sol.trunc(j)).order() for j in xrange(1,numterms)]
+            try:
+                sols = self.toTest(p,numterms,True)
+            except IndexError:
+                cPickle.dump(p,open("poly.p","wb"))
+                print "testIncreasing fails"
+                print p.support()
+                raise Exception("initialTerms failed in testIncreasingExps. Poly pickled in poly.p.")
+            for sol in sols: #test that order increases as we plug in more terms
+                if sol==0:
+                    continue
+                expList = [p(sol.trunc(j)).order() for j in xrange(1,len(sol.internal))]
                 for k in xrange(len(expList)-1):
                     if not expList[k]<expList[k+1]:
                         print expList
+                        print p
+                        print sol
                         print p(sol)
+                        cPickle.dump(p,open("poly.p","wb"))
+                        raise Exception("initialTerms failed in testIncreasingExps. Poly pickled in poly.p.")
+        print 'All '+str(trials)+' trials successfull!'
 
     def genRandom(self):
         """
@@ -56,8 +71,9 @@ class tester(object):
         pass
 
 if __name__=='__main__':
-    a = tester(solutionList,4,4)
+    a = tester(solutionList,8,8)
     #a = tester(SL2,4,4)
-    a.testIncreasingExps(10,numterms=4)
+    a.testIncreasingExps(100,numterms=4)
+
 
 

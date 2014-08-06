@@ -18,7 +18,13 @@ def lowerHull(inputpts):
    if len(pts)<3: return pts
    i,n = 2,len(pts)
    while i<n:
-      newSlope = slope(pts[i-1],pts[i])
+      try:
+         newSlope = slope(pts[i-1],pts[i])
+      except IndexError:
+         print pts
+         print len(pts)
+         print i
+         print n,'<---'
       prevSlope = slope(pts[i-2],pts[i-1])
       if newSlope < prevSlope: 
          pts.pop(i-1)
@@ -30,6 +36,7 @@ def lowerHull(inputpts):
             wayback = slope(pts[i-2],pts[i-1])
             if prevSlope < wayback:
                pts.pop(i-1)
+               n-=1
                j-=1
                i-=1
             else: break
@@ -73,8 +80,9 @@ def ploty(points):
 if __name__=='__main__':
    points = [[1,10],[1,5],[2,3],[3,3],[3,5],[4,4],[5,5],[4,6],[6,9]]
    #points = [[0, Fraction(5, 1)], [1, Fraction(7, 2)], [2, Fraction(1, 1)], [3, Fraction(-1, 1)], [5, Fraction(-1, 2)], [6, Fraction(1, 2)], [7, Fraction(10, 3)], [8, Fraction(5, 2)]]
-   print points
    #points = [[0,4],[1,3],[3,2],[5,1],[7,0]]
+   points = [[0, 3], [2, 2], [4, 6], [5, 0], [6, 4], [7, 3]]
    hull = lowerHull(points)
+   print points
    print hull
    ploty(points)

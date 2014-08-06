@@ -12,11 +12,12 @@ def initialTerms(poly,positivesOnly=False):
     first terms of each Puiseux solution of :py:data:`poly`.
     """
     hull = lowerHull(poly.support())
+    if len(hull)==1:
+        return []
     slopes = []
     for i in xrange(len(hull)-1):
         slopes.append(slp(hull[i],hull[i+1])) 
-    # dictionary with slope:[list of vertices on that edge]
-    slope_vertices = {}
+    slope_vertices = {} # dictionary with slope:[list of vertices on that edge]
     for slope in slopes:
         slope_vertices[slope] = []
     slope_vertices[slopes[0]].append(hull[0][0])
@@ -81,9 +82,12 @@ def solutionList(poly,nterms,asPuiseuxObject=False):
     toReturn = []
     lowest = poly.lowestDegree()
     if lowest>0:
-        toReturn+=[puiseux({0:0}) for i in xrange(lowest)]
-    oldPoly = poly
+        toReturn+=[[(0,0)] for i in xrange(lowest)]
     poly = poly.reduced()
+    if poly.degree()==0:
+        if asPuiseuxObject:return puiseuxify(toReturn)
+        else: return toReturn
+
     q = Queue()
     inTerms = initialTerms(poly)
     procList = [] ######
@@ -100,25 +104,24 @@ def solutionList(poly,nterms,asPuiseuxObject=False):
         toReturn.append(toAdd) ######
         toAdd = q.get()
     if len(toReturn)!=poly.degree()+lowest:
-        print "---------\/--------"
         print "Uh-oh. Polynomial is degree ",poly.degree()," but we've found ",len(toReturn)," solutions"
-        print poly
-        print oldPoly
-        print poly.support()
-        print poly.lowestDegree()
-        print toReturn
-        print "---------/\--------"
     
     # return as a list of puiseux objects instead of a list of term tuples
-    if asPuiseuxObject:
-        newRet = []
-        for item in toReturn:
-            pu = {}
-            for pair in item:
-                pu[pair[0]]=pair[1]
-            newRet.append(puiseux(pu))
-        toReturn = newRet
-    return toReturn
+    if asPuiseuxObject:return puiseuxify(toReturn)
+    else: return toReturn
+
+def puiseuxify(listy):
+    """
+    Takes a list of lists of (*c,gamma*) tuples and turns
+    it into the corresponding list of puiseux polynomials.
+    """
+    newRet = []
+    for item in listy:
+        pu = {}
+        for pair in item:
+            pu[pair[0]]=pair[1]
+        newRet.append(puiseux(pu))
+    return newRet 
 
 def recurse(poly,currentMonomial,currentList,q,depth):
     """
@@ -127,17 +130,11 @@ def recurse(poly,currentMonomial,currentList,q,depth):
     Working with lists instead of Puiseux objects for speed and ease of access
     Assumes currentMonomial is already in the list, and adds the new ones found.
     """
-    if depth<1:
+    if depth<1 or currentMonomial==(0,0):
         q.put(currentList) ######
         return
     toPlug = mypoly({1:puiseux({currentMonomial[0]:1}),0:puiseux({currentMonomial[0]:currentMonomial[1]})})
     nextPoly = poly(toPlug)
-    if len(nextPoly.internal.keys())==1:
-        print 'hi'
-        print currentList
-        q.put(currentList) ######
-        print q.empty()
-        return
     nextTerms = initialTerms(nextPoly,positivesOnly=True)
     if nextTerms==[]:
         q.put(currentList) ######

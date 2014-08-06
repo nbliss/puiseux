@@ -207,6 +207,15 @@ class puiseux(object):
         """
         return min(self.internal.keys())
 
+    def trunc(self,n):
+        """
+        Returns the ``n`` lowest degree terms of ``self``, or just
+        returns ``self`` if there are <= ``n`` terms.
+        """
+        if len(self.internal.keys())<=n: return self
+        exps = sorted(self.internal.keys())[:n]
+        return puiseux({i:self.internal[i] for i in exps})
+
     def commonDenom(self):
         """
         Returns the common denominator of the exponents.
@@ -237,4 +246,5 @@ if __name__=='__main__':
     b = puiseux([[4,(4,7)],[-5,(1,2)]])
     c = puiseux([[4,(4,7)],[-5,(1,2)],[0,(3,4)]])
     print c
-    print c.LC()
+    print c.trunc(1)
+    print c.trunc(0)
