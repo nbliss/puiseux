@@ -24,8 +24,12 @@ class mypoly(object):
         Be careful with it!!! If poly is a dict, checkReduced doesn't
         matter since it can't have repeated keys (exponents)
         """
+        self.internal = {}
         if type(poly)==dict:
-            self.internal = poly
+            for key in poly.keys():
+                if type(poly[key])!=puiseux:
+                    self.internal[key] = puiseux({0:poly[key]})
+                else: self.internal[key] = poly[key]
         elif checkReduced:
             self.internal = {poly[0][1]:poly[0][0]}
             for mon in poly[1:]:
