@@ -4,6 +4,7 @@ from expandParallel import solutionList
 from puiseuxExpansion import solutionList as SL2
 from fractions import Fraction as fr
 from numpy.random import random,randint,choice
+from numpy import sin,cos
 
 class tester(object):
     """
@@ -49,7 +50,7 @@ class tester(object):
                         print p(sol)
                         cPickle.dump(p,open("poly.p","wb"))
                         raise Exception("initialTerms failed in testIncreasingExps. Poly pickled in poly.p.")
-        print 'All '+str(trials)+' trials successfull!'
+        print '\nAll '+str(trials)+' trials successfull!'
 
     def genRandom(self):
         """
@@ -61,10 +62,12 @@ class tester(object):
         support = choice(len(self.monomials),size,replace=False)
         support = [self.monomials[i] for i in support]
         for mon in support:
+            angle = random()
+            coeff = complex(cos(angle),sin(angle))
             if mon[0] not in poly:
-                poly[mon[0]] = puiseux({mon[1]:complex(random(),random())})
+                poly[mon[0]] = puiseux({mon[1]:coeff})
             else:
-                poly[mon[0]] += puiseux({mon[1]:complex(random(),random())})
+                poly[mon[0]] += puiseux({mon[1]:coeff})
         return mypoly(poly)
 
     def testAll(self):
@@ -73,7 +76,7 @@ class tester(object):
 if __name__=='__main__':
     a = tester(solutionList,8,8)
     #a = tester(SL2,4,4)
-    a.testIncreasingExps(100,numterms=4)
+    a.testIncreasingExps(1000,numterms=4)
 
 
 
