@@ -14,10 +14,16 @@ s = raw_input("Enter a polynomial in x and y --> ")
 n = input("Enter the number of desired terms --> ")
 s = s.replace('^','**')
 p = poly(eval(s),x,y,domain='CC')
-d = {item[0][1]:puiseux({item[0][0]:item[1]}) for item in p.terms()}
+d = {item[0][1]:puiseux({item[0][0]:complex(item[1])}) for item in p.terms()}
+for item in p.terms():
+    if item[0][1] in d.keys():
+        d[item[0][1]]+=puiseux({item[0][0]:complex(item[1])})
+    else: d[item[0][1]] = puiseux({item[0][0]:complex(item[1])})
 m = mypoly(d)
 print
 print m
 
 for sol in solutionList(m,n,True):
+    print
+    print sol.LT()
     print sol
