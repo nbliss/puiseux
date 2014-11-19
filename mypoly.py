@@ -25,6 +25,21 @@ class mypoly(object):
         matter since it can't have repeated keys (exponents)
         """
         self.internal = {}
+        if type(poly)==str:
+            """
+            This is bad. Uses eval.
+            """
+            from sympy import poly as symp
+            from sympy.abc import x,y
+            s = poly
+            s = s.replace('^','**')
+            p = symp(eval(s),x,y,domain='CC')
+            d = {item[0][1]:puiseux({item[0][0]:complex(item[1])}) for item in p.terms()}
+            for item in p.terms():
+                if item[0][1] in d.keys():
+                    d[item[0][1]]+=puiseux({item[0][0]:complex(item[1])})
+                else: d[item[0][1]] = puiseux({item[0][0]:complex(item[1])})
+            poly = d
         if type(poly)==dict:
             for key in poly.keys():
                 if type(poly[key])!=puiseux:
