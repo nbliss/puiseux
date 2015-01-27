@@ -34,6 +34,7 @@ class mypoly(object):
             s = poly
             s = s.replace('^','**')
             p = symp(eval(s),x,y,domain='CC')
+            print p
             d = {item[0][1]:puiseux({item[0][0]:complex(item[1])}) for item in p.terms()}
             for item in p.terms():
                 if item[0][1] in d.keys():

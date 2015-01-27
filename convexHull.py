@@ -1,4 +1,5 @@
 from fractions import Fraction
+from numpy.random import randint
 def lowerHull(inputpts):
    """
    Given a list of lists (2-dimensional points), computes
@@ -44,6 +45,7 @@ def lowerHull(inputpts):
    return pts
 
 
+
 def slope(pt1,pt2):
    """
    Given two points (lists), returns the slope of the
@@ -51,7 +53,7 @@ def slope(pt1,pt2):
    """
    return Fraction(pt2[1]-pt1[1],pt2[0]-pt1[0])
 
-def ploty(points):
+def ploty(points,s):
    """
    Uses :py:mod:`matplotlib` to display a plot of the points and their
    lower hull connected with line segments.
@@ -59,6 +61,7 @@ def ploty(points):
    import matplotlib
    #matplotlib.use('macosx')
    import matplotlib.pyplot as plt
+
    """
    fig = plt.figure()
    #Put figure window on top of all other windows
@@ -75,7 +78,12 @@ def ploty(points):
    xmin = float(min([pt[0] for pt in points]))
    ymin = float(min([pt[1] for pt in points]))
    plt.axis([xmin-1,xmax+1,ymin-1,ymax+1])
-   plt.show()
+   #plt.show()
+   path = '/Users/nathanbliss/Documents/Google Drive/UIC_coursework/researchSpring14/pics/'+str(s)+'__'+str(randint(1e3,1e4))+'.png'
+   a = plt.savefig(path)
+   #print a
+   plt.clf()
+   return hull
 
 if __name__=='__main__':
    points = [[1,10],[1,5],[2,3],[3,3],[3,5],[4,4],[5,5],[4,6],[6,9]]
@@ -85,4 +93,4 @@ if __name__=='__main__':
    hull = lowerHull(points)
    print points
    print hull
-   ploty(points)
+   ploty(points,1)

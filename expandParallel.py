@@ -11,7 +11,8 @@ def initialTerms(poly,positivesOnly=False):
     Return a list of (*gamma,c)* pairs giving the
     first terms of each Puiseux solution of :py:data:`poly`.
     """
-    hull = lowerHull(poly.support())
+    #hull = lowerHull(poly.support())
+    hull = ploty(poly.support(),'hi')
     if len(hull)==1:
         return []
     slopes = []
@@ -135,6 +136,7 @@ def recurse(poly,currentMonomial,currentList,q,depth):
         return
     toPlug = mypoly({1:puiseux({currentMonomial[0]:1}),0:puiseux({currentMonomial[0]:currentMonomial[1]})})
     nextPoly = poly(toPlug)
+    #print nextPoly
     nextTerms = initialTerms(nextPoly,positivesOnly=True)
     if nextTerms==[]:
         q.put(currentList) ######

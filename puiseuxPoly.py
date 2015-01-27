@@ -160,14 +160,14 @@ class puiseux(object):
         if self.internal[listy[0]]==1 and listy[0]!=0:
             toReturn = 'x^('+str(listy[0])+')'
         else:
-            toReturn = str(self.internal[listy[0]])+'x^('+str(listy[0])+')'
+            toReturn = '('+str(self.internal[listy[0]])+')x^('+str(listy[0])+')'
         for elt in listy[1:]:
             if type(self.internal[elt])==int and self.internal[elt]<0:
                 toReturn+=' - '+str(0-self.internal[elt])+'x^('+str(elt)+')'
             elif self.internal[elt]==1 and listy[0]!=0:
                 toReturn+=' + x^('+str(elt)+')'
             else:
-                toReturn+=' + '+str(self.internal[elt])+'x^('+str(elt)+')'
+                toReturn+=' + ('+str(self.internal[elt])+')x^('+str(elt)+')'
         return toReturn
  
     def __str__(self):
@@ -237,9 +237,10 @@ def nearZero(a):
     Also returns true if *a* is a float or complex and is near 0.
     """
     if type(a) in [int, long]: return a==0
+    if type(a)==Fraction: return a==0
     if type(a) in [float,complex]:
         return abs(a)<TOLERANCE
-    if type(a)==Fraction: return a==0
+    return abs(a)<TOLERANCE
 
 if __name__=='__main__':
     a = puiseux([[2,(2,6)],[-3,(1,10)]])
