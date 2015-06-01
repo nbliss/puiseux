@@ -10,8 +10,12 @@ A convenience class that uses Sympy to allow easier command line input.
 Asks user for a polynomial and for the number of desired terms. Poly can
 be input as, for example, (x^3-y)*(2x+4). Sympy takes care of the simplification and the script transforms it into a mypoly object and calls the solutionList function.
 """
-s = raw_input("Enter a polynomial in x and y --> ") 
-n = input("Enter the number of desired terms --> ")
+if len(sys.argv)==3:
+    s = sys.argv[1]
+    n = int(sys.argv[2])
+else:
+    s = raw_input("Enter a polynomial in x and y --> ") 
+    n = input("Enter the number of desired terms --> ")
 s = s.replace('^','**')
 p = poly(eval(s),x,y,domain='CC')
 """

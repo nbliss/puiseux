@@ -80,7 +80,7 @@ def ploty(points,s):
    plt.axis([xmin-1,xmax+1,ymin-1,ymax+1])
    #plt.show()
    path = '/Users/nathanbliss/Documents/Google Drive/UIC_coursework/researchSpring14/pics/'+str(s)+'__'+str(randint(1e3,1e4))+'.png'
-   a = plt.savefig(path)
+   #a = plt.savefig(path)
    #print a
    plt.clf()
    return hull

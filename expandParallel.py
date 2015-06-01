@@ -136,7 +136,6 @@ def recurse(poly,currentMonomial,currentList,q,depth):
         return
     toPlug = mypoly({1:puiseux({currentMonomial[0]:1}),0:puiseux({currentMonomial[0]:currentMonomial[1]})})
     nextPoly = poly(toPlug)
-    #print nextPoly
     nextTerms = initialTerms(nextPoly,positivesOnly=True)
     if nextTerms==[]:
         q.put(currentList) ######
